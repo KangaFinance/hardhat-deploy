@@ -937,7 +937,7 @@ export class DeploymentsManager {
       } catch (e) {
         // console.error("require failed", e);
         throw new Error(
-          'ERROR processing skip func of ' + filepath + ':\n' + (e)
+          'ERROR processing skip func of ' + filepath + ':\n' + (e.stack || e)
         );
       }
       // console.log("get tags if any for " + scriptFilePath);
@@ -1043,7 +1043,7 @@ export class DeploymentsManager {
               'ERROR processing skip func of ' +
                 deployScript.filePath +
                 ':\n' +
-                (e)
+                (e.stack || e)
             );
           }
           log(`checking skip for ${deployScript.filePath} complete`);
@@ -1059,7 +1059,7 @@ export class DeploymentsManager {
               'ERROR processing ' +
                 deployScript.filePath +
                 ':\n' +
-                (e)
+                (e.stack || e)
             );
           }
           log(`executing ${deployScript.filePath} complete`);

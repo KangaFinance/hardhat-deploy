@@ -62,7 +62,7 @@ export async function submitSourcesToSourcify(
         return;
       }
     } catch (e) {
-      logError(e);
+      logError((e.response && JSON.stringify(e.response.data)) || e);
     }
 
     if (!metadataString) {
@@ -101,7 +101,7 @@ export async function submitSourcesToSourcify(
           metadataString
         );
       }
-      logError(e);
+      logError((e.response && JSON.stringify(e.response.data)) || e);
     }
   }
 

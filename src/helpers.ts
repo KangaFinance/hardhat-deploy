@@ -76,39 +76,39 @@ async function handleSpecificErrors<T>(p: Promise<T>): Promise<T> {
   try {
     result = await p;
   } catch (e) {
-//     if (
-//       typeof e.message === 'string' 
-//       e.message.indexOf('already known') !== -1
-//     ) {
-//       console.log(
-//         `
-// Exact same transaction already in the pool, node reject duplicates.
-// You'll need to wait the tx resolve, or increase the gas price via --gasprice (this will use old tx type)
-//         `
-//       );
-//       throw new Error(
-//         'Exact same transaction already in the pool, node reject duplicates'
-//       );
-//       // console.log(
-//       //   `\nExact same transaction already in the pool, node reject duplicates, waiting for it instead...\n`
-//       // );
-//       // const signedTx = await ethersSigner.signTransaction(unsignedTx);
-//       // const decoded = parseTransaction(signedTx);
-//       // if (!decoded.hash) {
-//       //   throw new Error(
-//       //     'tx with same hash already in the pool, failed to decode to get the hash'
-//       //   );
-//       // }
-//       // const txHash = decoded.hash;
-//       // tx = Object.assign(decoded as TransactionResponse, {
-//       //   wait: (confirmations: number) =>
-//       //     provider.waitForTransaction(txHash, confirmations),
-//       //   confirmations: 0,
-//       // });
-//     } else {
-      console.error(JSON.stringify(e), e);
+    if (
+      typeof e.message === 'string' &&
+      e.message.indexOf('already known') !== -1
+    ) {
+      console.log(
+        `
+Exact same transaction already in the pool, node reject duplicates.
+You'll need to wait the tx resolve, or increase the gas price via --gasprice (this will use old tx type)
+        `
+      );
+      throw new Error(
+        'Exact same transaction already in the pool, node reject duplicates'
+      );
+      // console.log(
+      //   `\nExact same transaction already in the pool, node reject duplicates, waiting for it instead...\n`
+      // );
+      // const signedTx = await ethersSigner.signTransaction(unsignedTx);
+      // const decoded = parseTransaction(signedTx);
+      // if (!decoded.hash) {
+      //   throw new Error(
+      //     'tx with same hash already in the pool, failed to decode to get the hash'
+      //   );
+      // }
+      // const txHash = decoded.hash;
+      // tx = Object.assign(decoded as TransactionResponse, {
+      //   wait: (confirmations: number) =>
+      //     provider.waitForTransaction(txHash, confirmations),
+      //   confirmations: 0,
+      // });
+    } else {
+      console.error(e.message, JSON.stringify(e), e);
       throw e;
-    // }
+    }
   }
   return result;
 }
