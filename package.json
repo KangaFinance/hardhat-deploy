@@ -1,5 +1,5 @@
 {
-  "name": "hardhat-deploy",
+  "name": "@kangafinance/hardhat-deploy",
   "version": "0.9.0",
   "description": "Hardhat Plugin For Replicable Deployments And Tests",
   "repository": "github:wighawag/hardhat-deploy",
