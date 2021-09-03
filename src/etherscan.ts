@@ -163,6 +163,12 @@ export async function submitSources(
     case '42161':
       host = 'https://api.arbiscan.io'
       break;
+    case '1666600000':
+      host = 'https://api.s0.t.hmny.io';
+      break;
+    case '1666700000':
+      host = 'https://api.s0.b.hmny.io'
+      break;
     default:
       return logError(`Network with chainId: ${chainId} not supported`);
   }
